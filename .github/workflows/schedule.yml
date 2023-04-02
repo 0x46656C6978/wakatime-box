@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: wakatime-gist
-        uses: abordage/wakatime-box@master
+        uses: 0x46656C6978/wakatime-box@master
         env:
           # SUPPORTED: last_7_days, last_30_days, last_6_months, last_year
           INPUT_DATE_RANGE: last_7_days
