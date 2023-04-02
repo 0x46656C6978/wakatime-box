@@ -2,10 +2,9 @@ export default function formatLine(name: string, total_seconds: number, percent:
 
   if (use_old_format) {
     return [
-      cutStr(formatName(name), 10).padEnd(12),
-      '🕓 ' + convertSeconds(total_seconds).padEnd(9),
-      generateBarChart(percent, 20),
-      String(percent.toFixed(1)).padStart(5) + '%',
+      cutStr(formatName(name), 10).padEnd(10),
+      '🕓' + convertSeconds(total_seconds).padEnd(9),
+      '('+String(percent.toFixed(1)).padStart(7) + '%)',
     ].join(' ');
   }
 
@@ -48,18 +47,4 @@ function formatName(name: string) {
     return 'Blade';
   }
   return name;
-}
-
-function generateBarChart(percent: number, size: number) {
-  const syms = '░▏▎▍▌▋▊▉█';
-
-  const frac = Math.floor((size * 8 * percent) / 100);
-  const barsFull = Math.floor(frac / 8);
-  if (barsFull >= size) {
-    return syms.substring(8, 9).repeat(size);
-  }
-  const semi = frac % 8;
-
-  return [syms.substring(8, 9).repeat(barsFull), syms.substring(semi, semi + 1)]
-    .join('').padEnd(size, syms.substring(0, 1));
 }
